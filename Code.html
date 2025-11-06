@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<title>Python Kode-Utfordring</title>
+<style>
+body {
+    background:#0b0f14;
+    color:#e8eef6;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    margin:0;
+    padding:40px 0;
+}
+@keyframes glow {
+  0% { box-shadow: 0 0 0px #1e6a4e; }
+  50% { box-shadow: 0 0 12px #1e6a4e; }
+  100% { box-shadow: 0 0 0px #1e6a4e; }
+}
+
+/* ✅ Shake animation for incorrect */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.codeblock.correct {
+    border-color: #1e6a4e;
+    background: #11281c;
+    animation: glow 1s ease-out;
+}
+
+.codeblock.incorrect {
+    border-color: #873b3b;
+    background: #2b1414;
+    animation: shake 0.35s ease-in-out;
+}
+.container {
+    max-width:900px;
+    margin:auto;
+    padding:0 32px;
+}
+h1 {
+    font-size: 32px;
+    margin-bottom: 6px;
+}
+p {
+    color:#9db1c8;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.codeblock {
+    background:#111a25;
+    border:1px solid #1f2a36;
+    border-radius:10px;
+    padding:18px;
+    margin-bottom:32px;
+    white-space:pre-wrap;      /* Wrap inside code-look blocks */
+    line-height:1.45;
+    font-family: Consolas, monospace;
+    position: relative;
+}
+
+.diff {
+    color:#ffd479;
+    font-weight:600;
+    margin-bottom:8px;
+    display:block;
+    font-size:14px;
+}
+
+.edit {
+    background:#0b121b;
+    color:#e6edf3;
+    border:1px solid #385270;
+    border-radius:6px;
+    width:100%;
+    max-width:100%;
+    padding:6px 8px;
+    margin-top:6px;
+    font-family: Consolas, monospace;
+    font-size:14px;
+    min-height:34px;           /* tighter input height */
+    resize:vertical;           /* allow expanding if needed */
+    box-sizing:border-box;     /* prevent overflow */
+}
+
+button {
+    padding:12px 20px;
+    border-radius:8px;
+    border:none;
+    font-weight:600;
+    cursor:pointer;
+    margin-right:10px;
+    margin-top:10px;
+    font-size:14px;
+    transition:0.15s;
+}
+#check { background:#1f4068; color:#fff; }
+#check:hover { background:#2b5587; }
+
+#reset { background:#333; color:#ccc; }
+#reset:hover { background:#444; }
+
+#form { background:#1e6a4e; color:#fff; display:none; }
+#form:hover { background:#24855d; }
+
+#result {
+    margin-top:22px;
+    padding:14px;
+    border:1px dashed #3c5875;
+    border-radius:8px;
+    display:none;
+}
+.letter-box {
+    display:inline-block;
+    padding:6px 10px;
+    border:1px solid #29425d;
+    border-radius:8px;
+    margin-right:6px;
+    background:#0c131c;
+}
+.title {
+    font-size: 42px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #6dd5fa, #7fefc2, #a6c4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    
+}
+
+.subtitle {
+    text-align: center;
+    color:#b6c8e1;
+    font-size: 17px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.subtitle::after {
+    content: "";
+    display: block;
+    width: 160px;
+    height: 3px;
+    background: linear-gradient(90deg, #6dd5fa, #7fefc2, #a6c4ff);
+    margin: 14px auto 0 auto;
+    border-radius: 4px;
+    animation: slide-underline 5s ease-in-out infinite alternate;
+}
+
+@keyframes slide-underline {
+    0% { width: 80px; opacity:0.8; }
+    100% { width: 500px; opacity:1; }
+}
+
+
+</style>
+</head>
+<body>
+<div class="container">
+<script>
+</script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+<script>
+let pyodideReadyPromise = loadPyodide(); // loads once
+</script>
+
+<h1 class="title">
+   🐍 Python Kode-Utfordring 🐍
+</h1>
+
+<p class="subtitle">
+    Løs oppgavene ved å fylle inn manglende kodelinjer.
+</p>
+
+<!-- OPPGAVE 1 -->
+<div class="codeblock">
+<span class="diff">Vanskelighetsgrad: ⭐ (lett)</span>
+# OPPGAVE 1 — add_two(a, b)
+# Mål: returnere summen av a og b.
+
+def add_two(a, b):
+    <textarea class="edit" id="t1" placeholder="Hint: bruk a og b i et regnestykke"></textarea>
+</div>
+
+<!-- OPPGAVE 2 -->
+<div class="codeblock">
+<span class="diff">Vanskelighetsgrad: ⭐ (lett)</span>
+# OPPGAVE 2 — greet(name)
+# Mål: returnere "Hello, {name}!"
+
+def greet(name):
+    <textarea class="edit" id="t2" placeholder='Hint: f-strenger (f"...") kan hjelpe'></textarea>
+</div>
+
+<!-- OPPGAVE 3 -->
+<div class="codeblock">
+<span class="diff">Vanskelighetsgrad: ⭐⭐ (middels)</span>
+# OPPGAVE 3 — average(nums)
+# Mål: returnere gjennomsnittet av listen nums.
+
+def average(nums):
+    total = 0
+    for n in nums:
+        total += n
+    <textarea class="edit" id="t3" placeholder="Hint: summen delt på antall (len)"></textarea>
+</div>
+
+<!-- OPPGAVE 4 -->
+<div class="codeblock">
+<span class="diff">Vanskelighetsgrad: ⭐⭐⭐ (litt vanskelig)</span>
+# OPPGAVE 4 — count_words(sentence)
+# Mål: returnere antall ord i setningen.
+
+def count_words(sentence):
+    # TODO: fjern ekstra mellomrom og tell ordene
+    <textarea class="edit" id="t4" placeholder="Hint: len(...) og .split()"></textarea>
+</div>
+
+<button id="check">Sjekk svar</button>  
+
+<div id="result" style="display:none">
+    <div id="scoreLine"><strong>Poeng:</strong> 0 / 4</div>
+    <div id="statusLine" style="margin-top:6px;color:#9db1c8;"></div>
+</div>
+
+</div>
+
+
+<script>
+/* --- Accept multiple correct variants --- */
+const patterns = {
+  t1: [ /^\s*(?:return\s+)?a\s*\+\s*b\s*$/i ],
+  t2: [
+    /^\s*return\s+f["']Hello,\s*\{name\}!["']\s*$/i,
+    /^\s*return\s*["']Hello,\s*["']\s*\+\s*name\s*\+\s*["']!["']\s*$/i,
+    /^\s*return\s*["']Hello,\s*\{0\}!["']\s*\.format\s*\(\s*name\s*\)\s*$/i
+  ],
+  t3: [
+    /^\s*return\s+total\s*\/\s*len\s*\(\s*nums\s*\)\s*$/i,
+    /^\s*return\s+sum\s*\(\s*nums\s*\)\s*\/\s*len\s*\(\s*nums\s*\)\s*$/i
+  ],
+  t4: [
+    /^\s*return\s+len\s*\(\s*sentence\s*\.split\s*\(\s*\)\s*\)\s*$/i,
+    /^\s*return\s+len\s*\(\s*sentence\s*\.strip\s*\(\s*\)\s*\.split\s*\(\s*\)\s*\)\s*$/i
+  ]
+};
+
+/* --- Confetti controller --- */
+let didCelebrate = false;
+
+function fireConfetti() {
+  
+  // --- Stage 1: Big Opening Burst ---
+  confetti({
+    particleCount: 250,
+    startVelocity: 70,
+    spread: 140,
+    ticks: 300,
+    origin: { x: 0.5, y: 0.6 }
+  });
+
+  // --- Stage 2: Confetti Rain (2 seconds) ---
+  const duration = 2000;
+  const end = Date.now() + duration;
+
+  (function rainFrame() {
+    confetti({
+      particleCount: 12,
+      startVelocity: 30,
+      spread: 360,
+      ticks: 250,
+      origin: { x: Math.random(), y: -0.2 } // fall fra toppen
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(rainFrame);
+    }
+  })();
+
+  // --- Stage 3: Final Celebration Burst ---
+  setTimeout(() => {
+    confetti({
+      particleCount: 300,
+      startVelocity: 80,
+      spread: 180,
+      gravity: 0.8,
+      ticks: 350,
+      origin: { x: 0.5, y: 0.6 }
+    });
+  }, 2100);
+}
+
+/* --- SINGLE source of truth: one check() only --- */
+function check(){
+  const result = document.getElementById("result");
+  const scoreLine = document.getElementById("scoreLine");
+  const statusLine = document.getElementById("statusLine");
+
+  let okCount = 0;
+  const taskIds = Object.keys(patterns);
+
+  for (const key of taskIds) {
+    const el = document.getElementById(key);
+    const txt = (el.value || "").trim();
+    const block = el.closest(".codeblock");
+
+    const options = Array.isArray(patterns[key]) ? patterns[key] : [patterns[key]];
+    const ok = options.some(rx => rx.test(txt));
+
+    if (ok) {
+      okCount++;
+      block.classList.add("correct");
+      block.classList.remove("incorrect");
+    } else {
+      block.classList.add("incorrect");
+      block.classList.remove("correct");
+    }
+  }
+
+  const total = taskIds.length;
+  scoreLine.innerHTML = `<strong>Poeng:</strong> ${okCount} / ${total}`;
+  statusLine.textContent = okCount === total
+    ? "Alle oppgavene er riktige! 🎉"
+    : "Sjekk de røde feltene og prøv igjen.";
+
+  result.style.display = "block";
+
+  // 🎊 Confetti + auto-refresh når alt er riktig
+  if (okCount === total && !didCelebrate) {
+    didCelebrate = true;
+    fireConfetti();
+    statusLine.textContent += " Oppgaven tilbakestilles om 15 sekunder…";
+    setTimeout(() => window.location.reload(), 15000);
+  }
+}
+
+/* --- Wire the button *after* this check() is defined --- */
+document.getElementById("check").onclick = check;
+</script>
+
+<!-- Keep confetti library AFTER the DOM, BEFORE the check() runs -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</body>
+
+</html>
